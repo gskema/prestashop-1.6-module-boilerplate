@@ -1,0 +1,11 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "extends": "airbnb-base/legacy",
+  "rules": {
+    "func-names": 0,
+    "max-len": ["warn", 120]
+  }
+}

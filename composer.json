@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "MyModule\\": "classes/"
+    },
+    "psr-0": {
+      "MyModule_": "models/"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "mkdirp": "~0.5.1",
+    "fs-extra": "~0.30.0",
+    "gulp": "~3.9.0",
+    "gulp-zip": "~3.2.0",
+    "del": "~2.2.0",
+    "run-sequence": "~1.2.0",
+    "glob": "~7.0.0",
+    "gulp-callback": "0.0.3",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "node-bourbon": "^4.2.8",
+    "gulp-if": "^2.0.1"
+  }
+}
