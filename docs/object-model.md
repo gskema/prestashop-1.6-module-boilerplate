@@ -173,7 +173,7 @@ $definition['fields'][]['values']
 
 $definition['fields'][]['default']
   Type: array
-  Specifies the default value. Use when the obejct value evauluestes to false: !$value
+  Specifies the default value. Used when the obejct value evaluates to false: !$value
   E.g.
   'default' => 'both'
 ```
