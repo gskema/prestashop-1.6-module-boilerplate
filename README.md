@@ -6,3 +6,9 @@ More documentation and code coming soon.
 ## Requirements
 
 - PHP 5.4
+
+## Generating class autoloader
+
+```bash
+composer dump-autoload -o
+```
