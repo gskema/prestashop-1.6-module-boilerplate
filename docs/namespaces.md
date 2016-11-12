@@ -2,7 +2,7 @@
 
 Require (once) `autoload.php` file at the top of main module file `mymodule.php`:
 
-```
+```php
 <?php
 
 require_once(__DIR__.'/autoload.php');
@@ -33,7 +33,8 @@ when you are extending your own custom controller class:
 require_once(__DIR__.'/../../autoload.php');
 
 class MyModuleActionOneModuleFrontController extends MyModuleModuleFrontController {
-...
+  ...
+}
 ```
 
 Modules controller files get included by PrestaShop before the actual module files,
@@ -97,13 +98,14 @@ You should see a newly created folder `mymodule/vendor`.
 This command generates and **optimized** autoloader, which you can now include
 in your module file(s):
 
-```
+```php
 <?php
 
 require_once(__DIR__.'/vendor/autoload.php');
 
 class MyModule extends Module {
-...
+  ...
+}
 ```
 
 Using composer is very convenient because it can generate a single autoloader
