@@ -121,4 +121,4 @@ While this is true, you should strive to keep your main module file as short as 
 and delegate most of the logic to other classes and controllers, where you can use `use ...;`
 statements.
 
-We believe that using namespaces is worth it, even if with these drawbacks.
+We believe that using namespaces is worth it, even with these drawbacks.
