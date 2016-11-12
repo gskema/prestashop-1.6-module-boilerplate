@@ -51,7 +51,7 @@ class Installer
         ));
 
         // Install admin controllers
-        // $this->installAdminController('AdminMyModuleConfiguration', 'MyModule Configuration');
+        $this->installAdminController('AdminMyModuleConfiguration', 'MyModule Configuration');
     }
 
     /**
@@ -60,7 +60,7 @@ class Installer
     public function uninstallModule()
     {
         // $this->db->execute($this->getDatabaseMigrationSQL('down'));
-        // $this->uninstallAdminController('AdminMyModuleConfiguration');
+        $this->uninstallAdminController('AdminMyModuleConfiguration');
     }
 
     /**
