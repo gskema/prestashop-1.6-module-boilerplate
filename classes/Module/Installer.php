@@ -43,7 +43,7 @@ class Installer
         // Make directories for images, caches, logs, etc.
 
         // Install database tables
-        // $this->db->execute($this->getDatabaseMigrationSQL('model1'));
+        // $this->db->execute($this->getDatabaseMigrationSQL('up/model1'));
 
         // Register hooks
         $this->module->registerHook(array(
@@ -59,6 +59,7 @@ class Installer
      */
     public function uninstallModule()
     {
+        // $this->db->execute($this->getDatabaseMigrationSQL('down'));
         // $this->uninstallAdminController('AdminMyModuleConfiguration');
     }
 
@@ -81,16 +82,16 @@ class Installer
                 '`ps_',
                 'TABLE `ps_',
                 'TABLE ps_',
-                'TABLE IF NOT EXISTS `ps_',
-                'TABLE IF NOT EXISTS ps_',
+                'EXISTS `ps_',
+                'EXISTS ps_',
                 'ENGINE = INNODB'
             ),
             array(
-                _DB_PREFIX_,
+                '`'._DB_PREFIX_,
                 'TABLE `'._DB_PREFIX_,
                 'TABLE '._DB_PREFIX_,
-                'TABLE IF NOT EXISTS `'._DB_PREFIX_,
-                'TABLE IF NOT EXISTS '._DB_PREFIX_,
+                'EXISTS `'._DB_PREFIX_,
+                'EXISTS '._DB_PREFIX_,
                 'ENGINE = '._MYSQL_ENGINE_
             ),
             file_get_contents($filePath)
