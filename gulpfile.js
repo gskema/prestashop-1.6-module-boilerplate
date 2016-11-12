@@ -14,8 +14,7 @@ var gulpif     = require('gulp-if');
 var moduleName = __dirname.split('/').pop();
 var useSourcemaps = false;
 
-// For testing module boilerplate only
-moduleName = moduleName == 'prestashop-module-boilerplate' ? 'mymodule' : moduleName;
+moduleName = 'mymodule';
 
 var tmpRoot   = './tmp/';
 var tmpFolder = tmpRoot + moduleName;
@@ -118,6 +117,37 @@ gulp.task('copy-index', function(callback) {
 });
 
 /**
+ * List smarty translations {l s='Translatable Text' mod='mymodule'}
+ * which have incorrect context (mod parameter)
+ */
+gulp.task('scan-translations', function (cb) {
+  glob('./**/*.tpl', function (er, files) {
+    var brokenTranslations = [];
+    var totalFiles = files.length;
+    var scannedFiles = 0;
+
+    files.forEach(function(file) {
+      var translationContext = moduleName;
+
+      fs.readFile(file, 'utf-8', function (err, contents) {
+        var brokenTranslationsInFile = listBrokenTranslationStrings(contents, translationContext);
+        if (brokenTranslationsInFile.length) {
+          brokenTranslationsInFile.unshift(file);
+          brokenTranslations.push(brokenTranslationsInFile);
+        }
+
+        if (++scannedFiles == totalFiles) {
+          console.log('Broken Smarty translation strings in module templates:');
+          console.log(brokenTranslations);
+          cb && cb();
+        }
+      });
+    });
+
+  });
+});
+
+/**
  * Runs gulp tasks in a defined sequence.
  * @see https://www.npmjs.com/package/run-sequence
  */
@@ -157,5 +187,23 @@ function getModuleVersion(callback) {
     }
 
     callback && callback(version);
+  });
+}
+
+function listBrokenTranslationStrings(smartyTplCode, translationContext) {
+  var translations = smartyTplCode.match(/\{l\s+s=['"].+?}/g);
+
+  if (!translations) {
+    return [];
+  }
+
+  return translations.filter(function(t) {
+    if (translationContext.length) {
+      // Doesn't have correct context
+      return !((new RegExp('mod=[\'"]' + translationContext + '[\'"]')).test(t));
+    } else {
+      // Has context even though it shouldn't
+      return !!/mod=['"]/.test(t);
+    }
   });
 }
