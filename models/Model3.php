@@ -1,5 +1,7 @@
 <?php
 
+use \MyModule\Core\ObjectModel;
+
 /**
  * Class MyModule_Model3
  *
