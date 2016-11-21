@@ -14,5 +14,12 @@
     "gulp-sourcemaps": "^1.6.0",
     "node-bourbon": "^4.2.8",
     "gulp-if": "^2.0.1"
+  },
+  "scripts": {
+    "create-zip": "./node_modules/.bin/gulp create-zip",
+    "compile-css": "./node_modules/.bin/gulp compile-css",
+    "copy-index": "./node_modules/.bin/gulp copy-index",
+    "scan-translations": "./node_modules/.bin/gulp scan-translations",
+    "build": "./node_modules/.bin/gulp build"
   }
 }
