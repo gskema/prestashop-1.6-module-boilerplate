@@ -13,6 +13,8 @@ class AdminMyModuleAjaxController extends ModuleAdminController
      */
     public function ajaxProcessGetItems()
     {
+        // $url = $this->context->link->getAdminLink('AdminMyModuleAjax').'&ajax=1&action=get_items';
+
         $response = array(
             'items' => array(),
         );
