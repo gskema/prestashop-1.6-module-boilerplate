@@ -59,7 +59,7 @@ PrestaShop expects module classes to be plain classes without a namespace.
 the class names are used to build hook names:
 
 ```php
-Hook::exec('actionObject'.get_class($this).'AddBefore', array('object' => $this));
+Hook::exec('actionObject'.get_class($this).'AddBefore', ['object' => $this]);
 ```
 
 **How to resolve this**?

@@ -6,7 +6,7 @@ use \MyModule\Core\ObjectModel;
  * Class MyModule_Model3
  *
  * @TODO Associations must be set once before instantiating MyModule_Model4
- * @TODO Shop::addTableAssociation('mm_model3', array('type' => 'shop'));
+ * @TODO Shop::addTableAssociation('mm_model3', ['type' => 'shop']);
  */
 class MyModule_Model3 extends ObjectModel
 {
@@ -25,20 +25,20 @@ class MyModule_Model3 extends ObjectModel
     /**
      * Model definition
      */
-    public static $definition = array(
+    public static $definition = [
         'table'   => 'mm_model3',
         'primary' => 'id_mm_model3',
-        'fields' => array(
-            'property1'  => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'length' => 128),
-            'toggleable' => array('type' => self::TYPE_BOOL,),
-            'active'     => array('type' => self::TYPE_BOOL,),
+        'fields' => [
+            'property1'  => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'length' => 128,],
+            'toggleable' => ['type' => self::TYPE_BOOL,],
+            'active'     => ['type' => self::TYPE_BOOL,],
 
             // Shop fields
             // @see Object::formatFields uses incorrect comparison operator for $data['shop'] != 'both'
             // That why we 'hack' it using 'shop' => 1
-            'position' => array('type' => self::TYPE_INT, 'shop' => '1'),
-        ),
-    );
+            'position' => ['type' => self::TYPE_INT, 'shop' => '1',],
+        ],
+    ];
 
     /**
      * Inserts new item to the database
@@ -64,9 +64,9 @@ class MyModule_Model3 extends ObjectModel
             foreach ($id_shop_list as $id_shop) {
                 Db::getInstance()->update(
                     self::$definition['table'],
-                    array(
+                    [
                         'position' => self::getMaxPosition($id_shop) + 1
-                    ),
+                    ],
                     self::$definition['primary'].' = '.(int)$this->id.' AND id_shop = '.(int)$id_shop
                 );
             }

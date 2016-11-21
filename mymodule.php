@@ -35,7 +35,7 @@ class MyModule extends Module
         $this->need_instance = 0;
         $this->bootstrap = true;
 
-        $this->ps_versions_compliancy = array('min' => '1.6.0.4', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = ['min' => '1.6.0.4', 'max' => _PS_VERSION_];
 
         parent::__construct();
 
@@ -98,24 +98,24 @@ class MyModule extends Module
     public function hookDisplayHeader()
     {
         $this->context->controller->addCSS($this->getLocalPath().'views/css/style.css');
-        $this->context->controller->addJS(array(
+        $this->context->controller->addJS([
             $this->getLocalPath().'views/js/front/feature1.js',
-        ));
+        ]);
 
-        $jsVariables = array(
+        $jsVariables = [
             'ajax_url' => $this->context->link->getModuleLink($this->name, 'ajax'),
-        );
+        ];
 
-        $jsTranslations = array(
+        $jsTranslations = [
             'TITLE_MY_ELEMENT' => $this->l('My Element Title'),
-        );
+        ];
 
-        Media::addJsDef(array(
-            $this->name => array(
+        Media::addJsDef([
+            $this->name => [
                 'variables'    => $jsVariables,
                 'translations' => $jsTranslations,
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

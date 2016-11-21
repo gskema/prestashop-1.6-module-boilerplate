@@ -6,12 +6,12 @@ To have a shop association table for an ObjectModel class, you must declare the 
 to PrestaShop before calling the class by calling :
 
 ``` php
-Shop::addTableAssociation('my_shop_object_model', array('type' => 'shop'));
+Shop::addTableAssociation('my_shop_object_model', ['type' => 'shop']);
 
 // or
 
-Shop::addTableAssociation('my_translatable_shop_object_model', array('type' => 'shop'));
-Shop::addTableAssociation('my_translatable_shop_object_model_lang', array('type' => 'fk_shop'));
+Shop::addTableAssociation('my_translatable_shop_object_model', ['type' => 'shop']);
+Shop::addTableAssociation('my_translatable_shop_object_model_lang', ['type' => 'fk_shop']);
 ```
 
 ## ObjectModel Instantiation
@@ -70,17 +70,17 @@ $definition['fields']
   Type: array, with string keys
   String keys are field names. E.g. 'price'. Each array item is an array with field properties.
   E.g.:
-  $definition['fields'] = array(
-    'price' => array('type' => ObjectModel::TYPE_FLOAT, 'validate' => 'isFloat'),
-    'name'  => array('type' => ObjectModel::TYPE_STRING, 'validate' => 'isName'),
-  );
+  $definition['fields'] = [
+    'price' => ['type' => ObjectModel::TYPE_FLOAT, 'validate' => 'isFloat',],
+    'name'  => ['type' => ObjectModel::TYPE_STRING, 'validate' => 'isName',],
+  ];
 
 $definition['fields'][]
   Key: string
   Type: array, with string keys
   Key is a field name. Must match column name in the database table. The value is array of fields properties.
   E.g.:
-  'price' => array('type' => ObjectModel::TYPE_FLOAT, 'validate' => 'isFloat'),
+  'price' => ['type' => ObjectModel::TYPE_FLOAT, 'validate' => 'isFloat',],
 
 $definition['fields'][]['type']
   Type: int
@@ -148,8 +148,8 @@ $definition['fields'][]['size']
   Type: integer or array
   Validates value length against the given range.
   E.g.
-  'size' => 5                              // Translates into: array('min' => 0, 'max' => 5)
-  'size' => array('min' => 5, 'max' => 10) // Translates into: array('min' => 5, 'max' => 10)
+  'size' => 5                         // Translates into: ['min' => 0, 'max' => 5]
+  'size' => ['min' => 5, 'max' => 10] // Translates into: ['min' => 5, 'max' => 10]
 
 $definition['fields'][]['copy_post']
   Type: boolean
@@ -169,7 +169,7 @@ $definition['fields'][]['values']
   Type: array
   Limits the valid values to a finite set.
   E.g.
-  'values' => array('both', 'catalog', 'search', 'none'),
+  'values' => ['both', 'catalog', 'search', 'none'],
 
 $definition['fields'][]['default']
   Type: array

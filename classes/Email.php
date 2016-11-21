@@ -151,11 +151,11 @@ abstract class Email
         $files = null;
         if (null !== $this->attachments) {
             $files = array_map(function ($filePath) {
-                return array(
+                return [
                     'content' => file_get_contents($filePath),
                     'name'    => pathinfo($filePath, PATHINFO_FILENAME),
                     'mime'    => mime_content_type($filePath),
-                );
+                ];
             }, $this->attachments);
         }
 
@@ -173,7 +173,7 @@ abstract class Email
         }
 
         // Variables in email templates need to have keys in this format: {$key}.
-        $variables = array();
+        $variables = [];
         foreach ($this->variables() as $key => $value) {
             $variables['{'.$key.'}'] = $value;
         }
@@ -210,6 +210,6 @@ abstract class Email
      */
     protected function variables()
     {
-        return array();
+        return [];
     }
 }

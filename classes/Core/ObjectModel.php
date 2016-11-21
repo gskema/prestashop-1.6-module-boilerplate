@@ -69,9 +69,9 @@ class ObjectModel extends \ObjectModel
     {
         $id = (int)$this->id;
 
-        $values = array(
+        $values = [
             $this->def['primary'] => $id > 0 ? $id : null,
-        );
+        ];
 
         foreach (static::$definition['fields'] as $property => $def) {
             $values[$property] = static::formatFieldValue($property, $this->{$property});

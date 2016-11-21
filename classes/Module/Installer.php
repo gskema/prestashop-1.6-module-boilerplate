@@ -46,9 +46,9 @@ class Installer
         // $this->db->execute($this->getDatabaseMigrationSQL('up/model1'));
 
         // Register hooks
-        $this->module->registerHook(array(
+        $this->module->registerHook([
             // 'displayHeader',
-        ));
+        ]);
 
         // Install admin controllers
         $this->installAdminController('AdminMyModuleConfiguration', 'MyModule Configuration');
@@ -78,22 +78,22 @@ class Installer
         }
 
         return str_replace(
-            array(
+            [
                 '`ps_',
                 'TABLE `ps_',
                 'TABLE ps_',
                 'EXISTS `ps_',
                 'EXISTS ps_',
                 'ENGINE = INNODB'
-            ),
-            array(
+            ],
+            [
                 '`'._DB_PREFIX_,
                 'TABLE `'._DB_PREFIX_,
                 'TABLE '._DB_PREFIX_,
                 'EXISTS `'._DB_PREFIX_,
                 'EXISTS '._DB_PREFIX_,
                 'ENGINE = '._MYSQL_ENGINE_
-            ),
+            ],
             file_get_contents($filePath)
         );
     }
@@ -108,7 +108,7 @@ class Installer
      */
     public static function getLangIds($active = false, $id_shop = null)
     {
-        $ids = array();
+        $ids = [];
         foreach (Language::getLanguages($active, $id_shop) as $lang) {
             $ids[] = $lang['id_lang'];
         }

@@ -33,7 +33,7 @@ class MyModuleActionOneModuleFrontController extends ModuleFrontController
      *         ? displayAjax{ACTION}     // Where AJAX response is generated
      *         : display                 // Compiles and outputs header, content and footer.
      */
-     
+
     /**
      * Controller initialization
      */
@@ -53,10 +53,10 @@ class MyModuleActionOneModuleFrontController extends ModuleFrontController
     public function checkAccess()
     {
         if ($this->ajax && !$this->isTokenValid()) {
-            $response = array(
+            $response = [
                 'status'  => 0,
                 'message' => Tools::displayError('Invalid token.'),
-            );
+            ];
 
             header('Content-Type: application/json');
             die(Tools::jsonEncode($response));
@@ -86,16 +86,16 @@ class MyModuleActionOneModuleFrontController extends ModuleFrontController
     {
         parent::initContent();
 
-        $this->context->smarty->assign(array(
+        $this->context->smarty->assign([
             // @TODO Assign template variables
-        ));
+        ]);
 
-        Media::addJsDef(array(
-            'mymodule' => array(
+        Media::addJsDef([
+            'mymodule' => [
                 'var1' => true,
                 'var2' => false,
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

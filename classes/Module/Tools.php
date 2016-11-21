@@ -21,7 +21,7 @@ class Tools
         self::terminateWithResponse(
             json_encode($data),
             $statusCode,
-            array('Content-Type' => 'application/json')
+            ['Content-Type' => 'application/json']
         );
     }
 
@@ -34,7 +34,7 @@ class Tools
      *
      * @return void
      */
-    public static function terminateWithResponse($content = '', $statusCode = 200, array $headers = array())
+    public static function terminateWithResponse($content = '', $statusCode = 200, array $headers = [])
     {
         http_response_code($statusCode);
 

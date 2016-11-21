@@ -13,7 +13,7 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
      */
     public function __construct()
     {
-        Shop::addTableAssociation('mm_model3', array('type' => 'shop'));
+        Shop::addTableAssociation('mm_model3', ['type' => 'shop']);
 
         $this->className  = 'MyModule_Model3';
         $this->table      = 'mm_model3';
@@ -39,20 +39,20 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
     public function renderOptions()
     {
         // @TODO this must be declared in the constructor
-        $this->fields_options = array(
-            'general' => array(
-                'title' =>    $this->l('Object options'),
-                'fields' =>    array(
-                    'MYMODULE_PARAM_1' => array(
+        $this->fields_options = [
+            'general' => [
+                'title' => $this->l('Object options'),
+                'fields' => [
+                    'MYMODULE_PARAM_1' => [
                         'title' => $this->l('MyModule parameter 1'),
                         'desc' => $this->l('An option associated with the object.'),
                         'cast' => 'intval',
                         'type' => 'bool'
-                    ),
-                ),
-                'submit' => array('title' => $this->l('Save'))
-            ),
-        );
+                    ],
+                ],
+                'submit' => ['title' => $this->l('Save')]
+            ],
+        ];
 
         return parent::renderOptions();
     }
@@ -132,32 +132,32 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
         // $this->addRowAction('view');
         $this->addRowAction('edit');
         $this->addRowAction('delete');
-        $this->bulk_actions = array(
-            'delete' => array(
+        $this->bulk_actions = [
+            'delete' => [
                 'text'    => $this->l('Delete selected'),
                 'confirm' => $this->l('Delete selected items?'),
-            ),
-        );
-        $this->fields_list = array(
-            'id_mm_model3' => array('title' => $this->l('ID'),),
-            'property1'          => array('title' => $this->l('Property 1'),),
-            'toggleable' => array(
+            ],
+        ];
+        $this->fields_list = [
+            'id_mm_model3' => ['title' => $this->l('ID'),],
+            'property1' => ['title' => $this->l('Property 1'),],
+            'toggleable' => [
                 'title'   => $this->l('Toggleable Property'),
                 'align'   => 'center',
                 'active'  => 'bool_prop',
                 'type'    => 'bool',
                 'class'   => 'fixed-width-sm',
                 'orderby' => false,
-            ),
-            'active' => array(
+            ],
+            'active' => [
                 'title'   => $this->l('Active'),
                 'align'   => 'center',
                 'active'  => 'status',
                 'type'    => 'bool',
                 'class'   => 'fixed-width-sm',
                 'orderby' => false,
-            ),
-        );
+            ],
+        ];
 
         if (Shop::getContext() != Shop::CONTEXT_ALL && Shop::getContext() != Shop::CONTEXT_GROUP) {
             $id_shop = Shop::getContextShopID();
@@ -168,13 +168,13 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
             $this->_join = 'LEFT JOIN '._DB_PREFIX_.'mm_model3 shop
              ON a.id_mm_model3 = shop.id_mm_model3 AND shop.id_shop = '.(int)$id_shop;
 
-            $this->fields_list['position'] = array(
+            $this->fields_list['position'] = [
                 'title' => $this->l('Position'),
                 'filter_key' => 'shop!position',
                 'align' => 'center',
                 'class' => 'fixed-width-sm',
                 'position' => 'position'
-            );
+            ];
 
             $this->informations[] = $this->l('If you would like to order items, sort the list by position.');
         } else {
@@ -196,61 +196,61 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
         // $this->addJS($this->module->getLocalPath().'views/js/bo.js');
 
         // @TODO Pass module variables to script, e.g. autocomplete value list
-        Media::addJsDef(array(
-            'mymodule' => array(
-                'values' => array(),
-            ),
-        ));
+        Media::addJsDef([
+            'mymodule' => [
+                'values' => [],
+            ],
+        ]);
 
         // @TODO Define form fields for add/edit form
-        $this->fields_form = array(
-            'legend' => array(
+        $this->fields_form = [
+            'legend' => [
                 'title' => $this->l('Edit/Add item'),
-            ),
-            'input' => array(
-                array(
+            ],
+            'input' => [
+                [
                     'name'  => 'property1',
                     'type'  => 'text',
                     'label' => $this->l('Property 1'),
                     'desc'  => $this->l('Here I property 1 to the user.'),
                     'hint'  => $this->l('Some extra formatting tip: forbidden characters, allowed values, etc.'),
-                ),
-                array(
+                ],
+                [
                     'type'    => 'switch',
                     'label'   => $this->l('Toggleable'),
                     'name'    => 'toggleable',
                     'class'   => 't',
                     'is_bool' => true,
-                    'values'  => array(
-                        array('id' => 'toggleable_on',  'value' => 1, 'label' => $this->l('Yes')),
-                        array('id' => 'toggleable_off', 'value' => 0, 'label' => $this->l('No')),
-                    ),
+                    'values'  => [
+                        ['id' => 'toggleable_on',  'value' => 1, 'label' => $this->l('Yes')],
+                        ['id' => 'toggleable_off', 'value' => 0, 'label' => $this->l('No')],
+                    ],
                     'desc' => $this->l('If enabled, this will be true.')
-                ),
-                array(
+                ],
+                [
                     'type'    => 'switch',
                     'label'   => $this->l('Active'),
                     'name'    => 'active',
                     'class'   => 't',
                     'is_bool' => true,
-                    'values'  => array(
-                        array('id' => 'active_on',  'value' => 1, 'label' => $this->l('Yes')),
-                        array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No')),
-                    ),
+                    'values'  => [
+                        ['id' => 'active_on',  'value' => 1, 'label' => $this->l('Yes')],
+                        ['id' => 'active_off', 'value' => 0, 'label' => $this->l('No')],
+                    ],
                     'desc' => $this->l('If disabled, this will be false.')
-                ),
-            ),
-            'submit' => array(
+                ],
+            ],
+            'submit' => [
                 'title' => $this->l('Save'),
-            ),
-        );
+            ],
+        ];
 
         if (Shop::isFeatureActive()) {
-            $this->fields_form['input'][] = array(
+            $this->fields_form['input'][] = [
                 'type' => 'shop',
                 'label' => $this->l('Shop association'),
                 'name' => 'checkBoxShopAsso',
-            );
+            ];
         }
 
         return parent::renderForm();
@@ -263,7 +263,7 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
     {
         $id_shop = Shop::getContextShopID();
         // Build an array of order IDs (could be a page!)
-        $submittedIds = array();
+        $submittedIds = [];
         $rows = (array)Tools::getValue($this->table);
         foreach ($rows as $row) {
             $ids = explode('_', $row);
@@ -278,7 +278,7 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
         $sql->orderBy('position ASC');
         $rows = (array)Db::getInstance()->executeS($sql);
 
-        $allIds = array();
+        $allIds = [];
         foreach ($rows as $row) {
             $allIds[] = (int)$row['id_mm_model3'];
         }
@@ -300,7 +300,7 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
         foreach ($allIds as $id_mm_model3) {
             $isSuccess &= Db::getInstance()->update(
                 $this->table.'_shop',
-                array('position' => $position++,),
+                ['position' => $position++,],
                 'id_mm_model3 = '.(int)$id_mm_model3
                     .' AND id_shop IN ('.implode(', ', $shopIDs).')'
             );
@@ -316,10 +316,10 @@ class AdminMyModule_Model3Controller extends ModuleAdminController
             die(true);
         } else {
             header('Content-Type: application/json');
-            die(Tools::jsonEncode(array(
+            die(Tools::jsonEncode([
                 'hasError' => true,
                 'errors'   => $this->l('Could not update positions in the database table.')
-            )));
+            ]));
         }
     }
 }

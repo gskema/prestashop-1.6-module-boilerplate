@@ -37,20 +37,20 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
     public function renderOptions()
     {
         // @TODO this must be declared in the constructor
-        $this->fields_options = array(
-            'general' => array(
-                'title' =>    $this->l('Object options'),
-                'fields' =>    array(
-                    'MYMODULE_PARAM_1' => array(
+        $this->fields_options = [
+            'general' => [
+                'title' => $this->l('Object options'),
+                'fields' => [
+                    'MYMODULE_PARAM_1' => [
                         'title' => $this->l('MyModule parameter 1'),
                         'desc' => $this->l('An option associated with the object.'),
                         'cast' => 'intval',
                         'type' => 'bool'
-                    ),
-                ),
-                'submit' => array('title' => $this->l('Save'))
-            ),
-        );
+                    ],
+                ],
+                'submit' => ['title' => $this->l('Save')]
+            ]
+        ];
 
         return parent::renderOptions();
     }
@@ -130,47 +130,47 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
         // $this->addRowAction('view');
         $this->addRowAction('edit');
         $this->addRowAction('delete');
-        $this->bulk_actions = array(
-            'delete' => array(
+        $this->bulk_actions = [
+            'delete' => [
                 'text'    => $this->l('Delete selected'),
                 'confirm' => $this->l('Delete selected items?'),
-            ),
-        );
-        $this->fields_list = array(
-            'id_my_translatable_object_model' => array('title' => $this->l('ID'),),
-            'property1'          => array('title' => $this->l('Property 1'),),
-            'toggleable' => array(
+            ],
+        ];
+        $this->fields_list = [
+            'id_my_translatable_object_model' => ['title' => $this->l('ID'),],
+            'property1' => ['title' => $this->l('Property 1'),],
+            'toggleable' => [
                 'title'   => $this->l('Toggleable Property'),
                 'align'   => 'center',
                 'active'  => 'bool_prop',
                 'type'    => 'bool',
                 'class'   => 'fixed-width-sm',
                 'orderby' => false,
-            ),
-            'text' => array(
+            ],
+            'text' => [
                 'title'   => $this->l('Text'),
                 'width'   => 'auto',
-            ),
-            'content' => array(
+            ],
+            'content' => [
                 'title'   => $this->l('Content'),
                 'width'   => 'auto',
-            ),
-            'active' => array(
+            ],
+            'active' => [
                 'title'   => $this->l('Active'),
                 'align'   => 'center',
                 'active'  => 'status',
                 'type'    => 'bool',
                 'class'   => 'fixed-width-sm',
                 'orderby' => false,
-            ),
-            'position' => array(
+            ],
+            'position' => [
                 'title'      => $this->l('Position'),
                 'filter_key' => 'a!position', // 'a' corresponds to table alias in SELECT query
                 'align'      => 'center',
                 'class'      => 'fixed-width-sm',
                 'position'   => 'position'
-            ),
-        );
+            ],
+        ];
 
         // $this->informations[] = $this->l('Here is an informative message helping the administrator.');
 
@@ -189,35 +189,35 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
         // $this->addJS($this->module->getLocalPath().'views/js/bo.js');
 
         // @TODO Pass module variables to script, e.g. autocomplete value list
-        Media::addJsDef(array(
-            'mymodule' => array(
-                'values' => array(),
-            ),
-        ));
+        Media::addJsDef([
+            'mymodule' => [
+                'values' => [],
+            ],
+        ]);
 
         // @TODO Define form fields for add/edit form
-        $this->fields_form = array(
+        $this->fields_form = [
             'tinymce' => true, // Use only if you have HTML fields
-            'legend' => array(
+            'legend' => [
                 'title' => $this->l('Edit/Add item'),
-            ),
-            'input' => array(
-                array(
+            ],
+            'input' => [
+                [
                     'name'  => 'property1',
                     'type'  => 'text',
                     'label' => $this->l('Property 1'),
                     'desc'  => $this->l('Here I property 1 to the user.'),
                     'hint'  => $this->l('Some extra formatting tip: forbidden characters, allowed values, etc.'),
-                ),
-                array(
+                ],
+                [
                     'name'  => 'text',
                     'type'  => 'text',
                     'lang'  => true,
                     'label' => $this->l('Text'),
                     'desc'  => $this->l('This text will be used or displayed somewhere.'),
                     'hint'  => $this->l('Some extra formatting tip: forbidden characters, allowed values, etc.'),
-                ),
-                array(
+                ],
+                [
                     'name'  => 'content',
                     'type'  => 'text',
                     'autoload_rte' => true, // Enables RTE editor for this field
@@ -227,36 +227,36 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
                     'hint' => $this->l('Invalid characters:').' <>;=#{}',
                     'label' => $this->l('Content'),
                     'desc'  => $this->l('This HTML will be output somewhere.'),
-                ),
-                array(
+                ],
+                [
                     'type'    => 'switch',
                     'label'   => $this->l('Toggleable'),
                     'name'    => 'toggleable',
                     'class'   => 't',
                     'is_bool' => true,
-                    'values'  => array(
-                        array('id' => 'toggleable_on',  'value' => 1, 'label' => $this->l('Yes')),
-                        array('id' => 'toggleable_off', 'value' => 0, 'label' => $this->l('No')),
-                    ),
+                    'values'  => [
+                        ['id' => 'toggleable_on',  'value' => 1, 'label' => $this->l('Yes')],
+                        ['id' => 'toggleable_off', 'value' => 0, 'label' => $this->l('No')],
+                    ],
                     'desc' => $this->l('If enabled, this will be true.')
-                ),
-                array(
+                ],
+                [
                     'type'    => 'switch',
                     'label'   => $this->l('Active'),
                     'name'    => 'active',
                     'class'   => 't',
                     'is_bool' => true,
-                    'values'  => array(
-                        array('id' => 'active_on',  'value' => 1, 'label' => $this->l('Yes')),
-                        array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No')),
-                    ),
+                    'values'  => [
+                        'id' => ['active_on',  'value' => 1, 'label' => $this->l('Yes')],
+                        'id' => ['active_off', 'value' => 0, 'label' => $this->l('No')],
+                    ],
                     'desc' => $this->l('If disabled, this will be false.')
-                ),
-            ),
-            'submit' => array(
+                ],
+            ],
+            'submit' => [
                 'title' => $this->l('Save'),
-            ),
-        );
+            ],
+        ];
 
         return parent::renderForm();
     }
@@ -267,7 +267,7 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
     public function ajaxProcessUpdatePositions()
     {
         // Build an array of order IDs (could be a page!)
-        $submittedIds = array();
+        $submittedIds = [];
         $rows = (array)Tools::getValue($this->table);
         foreach ($rows as $row) {
             $ids = explode('_', $row);
@@ -281,7 +281,7 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
         $sql->orderBy('position ASC');
         $rows = (array)Db::getInstance()->executeS($sql);
 
-        $allIds = array();
+        $allIds = [];
         foreach ($rows as $row) {
             $allIds[] = (int)$row['id_my_translatable_object_model'];
         }
@@ -302,7 +302,7 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
         foreach ($allIds as $id_my_translatable_object_model) {
             $isSuccess &= Db::getInstance()->update(
                 $this->table,
-                array('position' => $position++,),
+                ['position' => $position++,],
                 'id_my_translatable_object_model = '.(int)$id_my_translatable_object_model
             );
             if (!$isSuccess) {
@@ -317,10 +317,10 @@ class AdminMyModule_Model2Controller extends ModuleAdminController
             die(true);
         } else {
             header('Content-Type: application/json');
-            die(Tools::jsonEncode(array(
+            die(Tools::jsonEncode([
                 'hasError' => true,
                 'errors'   => $this->l('Could not update positions in the database table.')
-            )));
+            ]));
         }
     }
 }

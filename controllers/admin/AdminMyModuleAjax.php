@@ -15,9 +15,9 @@ class AdminMyModuleAjaxController extends ModuleAdminController
     {
         // $url = $this->context->link->getAdminLink('AdminMyModuleAjax').'&ajax=1&action=get_items';
 
-        $response = array(
-            'items' => array(),
-        );
+        $response = [
+            'items' => [],
+        ];
 
         header('Content-Type: application/json');
         die(Tools::jsonEncode($response));

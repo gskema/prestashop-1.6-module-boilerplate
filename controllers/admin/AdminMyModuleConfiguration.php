@@ -29,19 +29,19 @@ class AdminMyModuleConfigurationController extends ModuleAdminController
     {
         /** @see http://doc.prestashop.com/display/PS16/Using+the+HelperOptions+class */
         /** @see /admin/themes/default/template/helpers/options/options.tpl */
-        return array(
-            'general' => array(
+        return [
+            'general' => [
                 'title' => $this->l('My Module Configuration'),
                 'description' => $this->l('Some description'),
-                'submit' => array('title' => $this->l('Save')),
-                'fields' => array(
-                    MyModule::OPT_TEXT_1 => array(
+                'submit' => ['title' => $this->l('Save'),],
+                'fields' => [
+                    MyModule::OPT_TEXT_1 => [
                         'title' => $this->l('Text 1'),
                         'desc' =>  $this->l('Text 1 Description'),
                         'cast' => 'strval',
                         'type' => 'text'
-                    ),
-                    MyModule::OPT_TEXT_2 => array(
+                    ],
+                    MyModule::OPT_TEXT_2 => [
                         'title' => $this->l('Text 2'),
                         'desc' => $this->l('Text 2 Description'),
                         'cast' => 'strval',
@@ -50,10 +50,10 @@ class AdminMyModuleConfigurationController extends ModuleAdminController
                         'rte'  => true,
                         'cols' => 9,
                         'rows' => 9,
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -63,17 +63,17 @@ class AdminMyModuleConfigurationController extends ModuleAdminController
      */
     public function renderOptions()
     {
-        $this->addJS(array(
+        $this->addJS([
             _PS_JS_DIR_.'tiny_mce/tiny_mce.js',
             _PS_JS_DIR_.'admin/tinymce.inc.js',
-        ));
+        ]);
 
         $iso = $this->context->language->iso_code;
-        Media::addJsDef(array(
+        Media::addJsDef([
             'iso'      => file_exists(_PS_CORE_DIR_.'/js/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en',
             'path_css' => _THEME_CSS_DIR_,
             'ad'       => __PS_BASE_URI__.basename(_PS_ADMIN_DIR_),
-        ));
+        ]);
 
         // @TODO Custom selector for textareas with RTE option
         $hax = '';

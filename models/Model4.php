@@ -6,8 +6,8 @@ use \MyModule\Core\ObjectModel;
  * Class MyModule_Model4
  *
  * @TODO Associations must be set once before instantiating MyModule_Model4
- * @TODO Shop::addTableAssociation('mm_model4', array('type' => 'shop'));
- * @TODO Shop::addTableAssociation('mm_model4_lang', array('type' => 'fk_shop'));
+ * @TODO Shop::addTableAssociation('mm_model4', ['type' => 'shop']);
+ * @TODO Shop::addTableAssociation('mm_model4_lang', ['type' => 'fk_shop']);
  */
 class MyModule_Model4 extends ObjectModel
 {
@@ -30,30 +30,30 @@ class MyModule_Model4 extends ObjectModel
     public $position;
 
     /** @var array */
-    public static $definition = array(
+    public static $definition = [
         'table'     => 'mm_model4',
         'primary'   => 'id_mm_model4',
         'multilang' => true,
 
         // @TODO Use when you have `_lang` table and `id_shop` column exists - translations are different for each shop
-        // @TODO Shop::addTableAssociation('mm_model4_lang', array('type' => 'fk_shop'));
+        // @TODO Shop::addTableAssociation('mm_model4_lang', ['type' => 'fk_shop']);
         'multilang_shop' => true,
 
-        'fields' => array(
-            'property1'  => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
-            'toggleable' => array('type' => self::TYPE_BOOL,),
-            'active'     => array('type' => self::TYPE_BOOL,),
+        'fields' => [
+            'property1'  => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName'],
+            'toggleable' => ['type' => self::TYPE_BOOL,],
+            'active'     => ['type' => self::TYPE_BOOL,],
 
             // Language fields
-            'text'    => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'lang' => true),
-            'content' => array('type' => self::TYPE_HTML,   'validate' => 'isCleanHtml',   'lang' => true),
+            'text'    => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'lang' => true],
+            'content' => ['type' => self::TYPE_HTML,   'validate' => 'isCleanHtml',   'lang' => true],
 
             // Shop fields
             // @see Object::formatFields uses incorrect comparison operator for $data['shop'] != 'both'
             // That why we 'hack' it using 'shop' => 1
-            'position' => array('type' => self::TYPE_INT, 'shop' => '1'),
-        ),
-    );
+            'position' => ['type' => self::TYPE_INT, 'shop' => '1'],
+        ],
+    ];
 
     /**
      * Inserts new item to the database
@@ -79,9 +79,7 @@ class MyModule_Model4 extends ObjectModel
             foreach ($id_shop_list as $id_shop) {
                 Db::getInstance()->update(
                     self::$definition['table'],
-                    array(
-                        'position' => self::getMaxPosition($id_shop) + 1
-                    ),
+                    ['position' => self::getMaxPosition($id_shop) + 1],
                     self::$definition['primary'].' = '.(int)$this->id.' AND id_shop = '.(int)$id_shop
                 );
             }

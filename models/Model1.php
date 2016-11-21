@@ -23,16 +23,16 @@ class MyModule_Model1 extends ObjectModel
     /**
      * Model definition
      */
-    public static $definition = array(
+    public static $definition = [
         'table'   => 'mm_model1',
         'primary' => 'id_mm_model1',
-        'fields'  => array(
-            'property1'  => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'length' => 128),
-            'toggleable' => array('type' => self::TYPE_BOOL,),
-            'active'     => array('type' => self::TYPE_BOOL,),
-            'position'   => array('type' => self::TYPE_INT,),
-        ),
-    );
+        'fields'  => [
+            'property1'  => ['type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'length' => 128,],
+            'toggleable' => ['type' => self::TYPE_BOOL,],
+            'active'     => ['type' => self::TYPE_BOOL,],
+            'position'   => ['type' => self::TYPE_INT,],
+        ],
+    ];
 
     public function add($autoDate = true, $nullValues = false)
     {
