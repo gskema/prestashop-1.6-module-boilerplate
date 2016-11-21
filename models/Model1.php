@@ -1,6 +1,7 @@
 <?php
 
 use \MyModule\Core\ObjectModel;
+use \MyModule\Model1\Collection as Model1Collection;
 
 /**
  * Class MyModule_Model1
@@ -49,5 +50,13 @@ class MyModule_Model1 extends ObjectModel
 
         // If value is null, then return -1 so we can increment it to -1 + 1 = 0
         return Tools::strlen($position) ? (int)$position : -1;
+    }
+
+    /**
+     * @return Model1Collection
+     */
+    public static function query()
+    {
+        return new Model1Collection();
     }
 }
